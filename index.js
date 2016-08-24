@@ -7,7 +7,7 @@ module.exports = function(source){
     var query = loader_utils.parseQuery(this.query);
     
     // get the extra options not contained in the query
-    var opts = this.options.vefaAssets;
+    var opts = this.options.vefaAssets || {};
     
     // get the specific context involved, defaulting to Webpack's declared context
     var context = {
