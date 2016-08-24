@@ -36,5 +36,5 @@ module.exports = function(source){
         this.emitFile(file, source);
     }
 
-    return;
+    return "";
 }
