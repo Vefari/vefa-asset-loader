@@ -1,25 +1,23 @@
-var utils = require('loader-utils');
+let utils = require('loader-utils');
 
 module.exports = function(source){
     this.cacheable && this.cacheable();
     
     // get config
-    var config = utils.getLoaderConfig(this, "vefaAsset");
+    let config = utils.getLoaderConfig(this, "vefaAsset");
+    config = utils.getLoaderConfig(this, config.use);
     
     // get the specific context involved, defaulting to Webpack's declared context
-    var context = {
-        context: config.context || this.options.context,
+    let context = {
+        context: config.context || utils.getLoaderConfig(this, "context"),
         content: source
     };
     
     // define a specific extension either through the query or through the options
     // if no extension given, default to the one sent aong
-    var extension = config.extension || "[ext]";
-
     // create the general basic filepath
-    var default_path = "[path][name]." + extension;
-
-    var file_path = config.export || default_path;
+    let default_path = "[path][name]." + (config.extension || "[ext]");
+    let file_path = config.export || default_path;
     
     // lets sub out all the placeholders
     var file = utils.interpolateName(
