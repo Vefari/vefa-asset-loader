@@ -1,3 +1,4 @@
+'use strict'
 let utils = require('loader-utils');
 
 module.exports = function(source){
