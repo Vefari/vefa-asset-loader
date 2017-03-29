@@ -5,8 +5,8 @@ module.exports = function(source){
     this.cacheable && this.cacheable();
     
     // get config
-    let config = utils.getLoaderConfig(this, "vefaAsset");
-    config = utils.getLoaderConfig(this, config.use);
+    let config = utils.getLoaderConfig(this);
+    // config = utils.getLoaderConfig(this, config.use);
     
     // get the specific context involved, defaulting to Webpack's declared context
     let context = {
@@ -32,6 +32,11 @@ module.exports = function(source){
         this.emitFile(file, source);
     }
 
-    return "";
+    if (config.passSource) {
+        return source;
+    }
+    else {
+        return "";
+    }
 }
 module.exports.raw = true;
