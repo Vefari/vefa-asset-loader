@@ -6,7 +6,6 @@ module.exports = function(source){
     
     // get config
     let config = utils.getLoaderConfig(this);
-    // config = utils.getLoaderConfig(this, config.use);
     
     // get the specific context involved, defaulting to Webpack's declared context
     let context = {
