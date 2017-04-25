@@ -1,15 +1,16 @@
 'use strict'
 let utils = require('loader-utils');
 
+
 module.exports = function(source){
     this.cacheable && this.cacheable();
     
     // get config
-    let config = utils.getLoaderConfig(this);
+    let config = utils.getOptions(this);
     
     // get the specific context involved, defaulting to Webpack's declared context
     let context = {
-        context: config.context || utils.getLoaderConfig(this, "context"),
+        context: config.context,
         content: source
     };
     
